@@ -8,19 +8,40 @@
     src: url(../fonts/Montserrat-Thin.ttf);
 }
 
-header{
+
+header {
     padding-bottom: 15px;
     display: flex;
     flex-direction: column;
+    position: fixed;
+    margin-left: calc(50% – 50vw);
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.moving {
+    transform: translateX(-30%);
+}
+
+.body{
+    padding-top: 150px;
 }
 
 .top{
     color: white;
+    width: 100vw;
     text-align: center;
     font-family: 'Disclaimer';
     font-size: 120px;
     letter-spacing: 0.08em;
+    transition: 0.5s;
 }
+
 
 .sort{
     text-align: center;
@@ -51,7 +72,6 @@ body{
 
 .grid{
     position: relative;
-
 }
 
 .item{

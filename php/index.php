@@ -56,31 +56,33 @@ try {
 
 <body>
     <header>
-        <div class="top">
+        <div class="top" >
             <span>GARBAGE BOX</span>
         </div>
+    </header>
+
+    <div class="body">
         <div class="sort">
             <p></p>
             <span class="sortItem">category</span>
             <span class="sortItem">locate</span>
             <span class="sortItem">date</span>
         </div>
-    </header>
+        <div class="grid" id="grid-contents">
 
-    <div class="grid" id="grid-contents">
-
-        <?php
-        foreach ($objects as $index => $object) {
-            if ($index != 0) {
-                echo "      <div class='item'>" . "\n";
-                echo "          <div class='item-content'>" . "\n";
-                echo "              <image class='garbage' src='" . "https://storage.googleapis.com/" . $bucketName . '/' . $object->name() . "'>" . "\n";
-                echo '          </div>' . "\n";
-                echo '      </div>' . "\n";
+            <?php
+            foreach ($objects as $index => $object) {
+                if ($index != 0) {
+                    echo "      <div class='item'>" . "\n";
+                    echo "          <div class='item-content'>" . "\n";
+                    echo "              <image class='garbage' src='" . "https://storage.googleapis.com/" . $bucketName . '/' . $object->name() . "'>" . "\n";
+                    echo '          </div>' . "\n";
+                    echo '      </div>' . "\n";
+                }
             }
-        }
-        ?>
+            ?>
 
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>

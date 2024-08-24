@@ -22,3 +22,8 @@ function hideImg() {
 function showImg() {
     grid.show(grid.getItems());
 }
+
+$(window).scroll(function() {
+    console.log("scroll event is fire :" + window.scrollY);
+    $(".top").toggleClass("moving", window.scrollY > 100);
+});
