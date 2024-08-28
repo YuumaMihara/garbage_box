@@ -50,13 +50,14 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link href="../css/lightbox.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <title>GARBAGE BOX</title>
 </head>
 
 <body>
     <header>
-        <div class="top" >
+        <div class="top">
             <span>GARBAGE BOX</span>
         </div>
     </header>
@@ -75,7 +76,8 @@ try {
                 if ($index != 0) {
                     echo "      <div class='item'>" . "\n";
                     echo "          <div class='item-content'>" . "\n";
-                    echo "              <image class='garbage' src='" . "https://storage.googleapis.com/" . $bucketName . '/' . $object->name() . "'>" . "\n";
+                    echo "              <a class='garbage-link' data-lightbox='garbage' href='" . "https://storage.googleapis.com/" . $bucketName . '/' . $object->name() . "'>";
+                    echo "              <image class='garbage' src='" . "https://storage.googleapis.com/" . $bucketName . '/' . $object->name() . "'></a>" . "\n";
                     echo '          </div>' . "\n";
                     echo '      </div>' . "\n";
                 }
@@ -88,6 +90,7 @@ try {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.9.5/muuri.js" integrity="sha512-hFmxG/5TvZb0azjulqGPzLEP0LppyA1IyaidJBaDCwEvbBSQlTaUiQ453Tb2Af/3RGfV5A14raSxmIx3Oxz8mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="../js/lightbox.js"></script>
     <script src="../js/index.js"></script>
 </body>
 
