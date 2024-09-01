@@ -5,42 +5,20 @@
 
 require '../vendor/autoload.php';
 
-use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Core\Exception\GoogleException;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Datastore\DatastoreClient;
 
 putenv('GOOGLE_APPLICATION_CREDENTIALS=../key/cloud_strage_api_key.json');
 
 $projectId = 'web-photo-gallery-429509';
-$bucketName = 'garbagebox';
-$folderName = 'image/';
-$storage;
-$bucket;
-$objects;
 
-try {
-    // Google Cloud Storageクライアントを作成
-    $storage = new StorageClient([
-        'projectId' => $projectId
-    ]);
+// Google Cloud Datastoreクライアントを作成
+$datastore = new DatastoreClient([
+    'projectId' => $projectId
+]);
 
-    // バケットを取得
-    $bucket = $storage->bucket($bucketName);
+$query = $datastore->query()->kind('Contents');
 
-    // フォルダ内のオブジェクトをリスト
-    $objects = $bucket->objects([
-        'prefix' => $folderName
-    ]);
-} catch (NotFoundException $e) {
-    echo 'Error: Bucket or object not found: ' . $e->getMessage() . PHP_EOL;
-} catch (ServiceException $e) {
-    echo 'Error: Service exception: ' . $e->getMessage() . PHP_EOL;
-} catch (GoogleException $e) {
-    echo 'Error: Google API exception: ' . $e->getMessage() . PHP_EOL;
-} catch (Exception $e) {
-    echo 'Error: General exception: ' . $e->getMessage() . PHP_EOL;
-}
+$result = $datastore->runQuery($query);
 
 ?>
 
@@ -50,13 +28,21 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link href="../css/lightbox.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="../js/lightbox.js"></script>
     <title>GARBAGE BOX</title>
 </head>
 
 <body>
+    <script>
+        lightbox.option({
+            'disableScrolling': true,
+            'showImageNumberLabel': false
+        })
+    </script>
     <header>
-        <div class="top" >
+        <div class="top">
             <span>GARBAGE BOX</span>
         </div>
     </header>
@@ -71,11 +57,12 @@ try {
         <div class="grid" id="grid-contents">
 
             <?php
-            foreach ($objects as $index => $object) {
+            foreach ($result as $index => $entity) {
                 if ($index != 0) {
                     echo "      <div class='item'>" . "\n";
                     echo "          <div class='item-content'>" . "\n";
-                    echo "              <image class='garbage' src='" . "https://storage.googleapis.com/" . $bucketName . '/' . $object->name() . "'>" . "\n";
+                    echo "              <a class='garbage-link' data-lightbox='garbage' href='" . $entity['URL'] . "'>";
+                    echo "              <image class='garbage' src='". $entity['URL'] . "'></a>" . "\n";
                     echo '          </div>' . "\n";
                     echo '      </div>' . "\n";
                 }
