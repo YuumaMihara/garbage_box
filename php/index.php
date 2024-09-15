@@ -75,6 +75,7 @@ $result = $datastore->runQuery($query);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.9.5/muuri.js" integrity="sha512-hFmxG/5TvZb0azjulqGPzLEP0LppyA1IyaidJBaDCwEvbBSQlTaUiQ453Tb2Af/3RGfV5A14raSxmIx3Oxz8mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="../js/lightbox.js"></script>
     <script src="../js/index.js"></script>
 </body>
 
