@@ -58,14 +58,12 @@ $result = $datastore->runQuery($query);
 
             <?php
             foreach ($result as $index => $entity) {
-                if ($index != 0) {
-                    echo "      <div class='item'>" . "\n";
-                    echo "          <div class='item-content'>" . "\n";
-                    echo "              <a class='garbage-link' data-lightbox='garbage' href='" . $entity['URL'] . "'>";
-                    echo "              <image class='garbage' src='". $entity['URL'] . "'></a>" . "\n";
-                    echo '          </div>' . "\n";
-                    echo '      </div>' . "\n";
-                }
+                echo "      <div class='item'>" . "\n";
+                echo "          <div class='item-content'>" . "\n";
+                echo "              <a class='garbage-link' data-lightbox='garbage' href='" . $entity['URL'] . "'>";
+                echo "              <img class='garbage' src='" . $entity['URL'] . "'></img></a>" . "\n";
+                echo '          </div>' . "\n";
+                echo '      </div>' . "\n";
             }
             ?>
 
@@ -77,6 +75,14 @@ $result = $datastore->runQuery($query);
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <script src="../js/lightbox.js"></script>
     <script src="../js/index.js"></script>
+    <script src="../js/cloudstoreAPIFetcher.js"></script>
+    <script src="../js/lightbox.js"></script>
+    <script>
+        lightbox.option({
+            'disableScrolling': true,
+            'showImageNumberLabel': false
+        })
+    </script>
 </body>
 
 </html>

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto-Thin.ttf);
+}
+
 body.lb-disable-scrolling {
   overflow: hidden;
 }
@@ -157,11 +162,12 @@ body.lb-disable-scrolling {
   color: #ccc;
 }
 
-.lb-data .lb-details {
+.lb-data{
   width: 85%;
   float: left;
   text-align: left;
   line-height: 1.1em;
+  margin-left: 30px;
 }
 
 .lb-data .lb-caption {
@@ -174,8 +180,88 @@ body.lb-disable-scrolling {
   color: #4ae;
 }
 
-.lb-details span {
+/* ラベル用ここから */
+.lb-details li {
+  display: inline-block;
+  margin: 0 .5em .3em 1em;
+  padding: 0;
+}
+
+.lb-details li a {
+  position: relative;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 1em;
+  background-color: #2196F3;
+  border-radius: 0 3px 3px 0;
+  color: #fff;
+  font-size: 13px;
+  text-decoration: none;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.lb-details li a::before {
+  position: absolute;
+  top: 0;
+  left: -15px;
+  content: '';
+  width: 0;
+  height: 0;
+  border-color: transparent #2196F3 transparent transparent;
+  border-style: solid;
+  border-width: 15px 15px 15px 0;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.lb-details li a::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 2;
   display: block;
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  background-color: #fff;
+  border-radius: 100%;
+}
+
+.lb-details li a:hover {
+  background-color: #555;
+  color: #fff;
+}
+.lb-details li a:hover::before {
+  border-right-color: #555;
+}
+
+/* ラベル用ここまで */
+
+.lb-details p {
+  font-size: 25px;
+  font-family: 'Roboto';
+}
+
+.lb-details a:hover,a:visited {
+  color: inherit;
+}
+
+#icon_pin:hover {
+  filter: brightness(0) saturate(100%) invert(17%) sepia(97%) saturate(7496%) hue-rotate(3deg) brightness(107%) contrast(116%);
+}
+
+.lb-details p:not(.title_head) {
+  margin-top: 50px;
+}
+
+.lb-details {
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .lb-data .lb-number {

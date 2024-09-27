@@ -26,4 +26,32 @@ async function getEntity(name) {
   }
 }
 
+// すべてのURLを取得する関数
+async function getAllEntities() {
+  const query = datastore.createQuery('Contents');
+  try {
+    const [entities] = await datastore.runQuery(query);
+    return entities;
+  } catch {
+    console.error('エンティティの取得中にエラーが発生しました:', err);
+  }
+}
+
+// ラベルが一致するエンティティを取得する関数
+// param: 検索条件のラベル名
+async function getEntityByLabel(labelName) {
+  const entities = await getAllEntities();
+  // cloudstoreのクエリに部分一致がないため、js内のfilterを使用
+  return entities.filter(entity =>
+    entity["label"] && entity["label"].includes(labelName)
+  );
+}
+
+// 日付が一致するエンティティを取得する関数
+// dete: 検索条件の日付
+async function getUrlsByDate(date) {
+  
+}
+
 exports.getEntity = getEntity;
+exports.getEntityByLabel = getEntityByLabel;

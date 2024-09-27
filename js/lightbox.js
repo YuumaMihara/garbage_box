@@ -113,7 +113,7 @@
     // on the page below.
     //
     // Github issue: https://github.com/lokesh/lightbox2/issues/663
-    $('<div id="lightboxOverlay" tabindex="-1" class="lightboxOverlay"></div><div id="lightbox" tabindex="-1" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt=""/><div class="lb-nav"><a class="lb-prev" role="button" tabindex="0" aria-label="Previous image" href="" ></a><a class="lb-next" role="button" tabindex="0" aria-label="Next image" href="" ></a></div><div class="lb-loader"><a class="lb-cancel" role="button" tabindex="0"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span><span class="location"></span><span class="detail_location"></span><span class="label"></span><span class="description"></span></div><div class="lb-closeContainer"><a class="lb-close" role="button" tabindex="0"></a></div></div></div></div>').appendTo($('body'));
+    $('<div id="lightboxOverlay" tabindex="-1" class="lightboxOverlay"></div><div id="lightbox" tabindex="-1" class="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt=""/><div class="lb-nav"><a class="lb-prev" role="button" tabindex="0" aria-label="Previous image" href="" ></a><a class="lb-next" role="button" tabindex="0" aria-label="Next image" href="" ></a></div><div class="lb-loader"><a class="lb-cancel" role="button" tabindex="0"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span><p class="title_head">DATE</p><span class="date"></span><p>LOCATION</p><span class="location"></span><p>COORDINATE</p><a href="#" target="_blank" class="coordinate_href"><img id="icon_pin" src="../contents/icon/pin.png" width="25px" height="25px"></a><a href="#" target="_blank" class="detail_location"></a><p>LABEL</p><span class="label"></span></div><div class="lb-closeContainer"><a class="lb-close" role="button" tabindex="0"></a></div></div></div></div>').appendTo($('body'));
 
     // Cache jQuery objects
     this.$lightbox       = $('#lightbox');
@@ -276,7 +276,7 @@
   };
 
   // Hide most UI elements in preparation for the animated resizing of the lightbox.
-  Lightbox.prototype.changeImage = function(imageNumber) {
+  Lightbox.prototype.changeImage = async function(imageNumber) {
     var self = this;
     var filename = this.album[imageNumber].link;
     var filetype = filename.split('.').slice(-1)[0];
@@ -284,20 +284,21 @@
     var $location = this.$lightbox.find('.location');
     var $detailLocation = this.$lightbox.find('.detail_location');
     var $label = this.$lightbox.find('.label');
-    var $description = this.$lightbox.find('.description');
+    var $date = this.$lightbox.find('.date');
+    var $pinIcon = this.$lightbox.find('.coordinate_href');
     const objectName = filename.replace("https://storage.googleapis.com/garbagebox/image/", "");
-    fetch('http://localhost:3000/getEntity?name=' + objectName)
-      .then(response => response.text())
-      .then(data => {
-          //stringで取得した結果をjsonへ変換
-          const resultEnity = JSON.parse(data)[0][0];
-          console.log(resultEnity);
-          $location.text(resultEnity['location']);
-          $detailLocation.text(resultEnity['detail_location']);
-          $label.text(resultEnity['label']);
-          $description.text(resultEnity['description']);
-        })
-        .catch(error => console.error('Error:', error));
+    const resultEnity = await window.fetchGetEntityByName(objectName);
+
+    $location.text(resultEnity['location']);
+    $pinIcon[0].setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + resultEnity['detail_location']);
+    $detailLocation[0].setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + resultEnity['detail_location']);
+    $detailLocation.text(resultEnity['detail_location']);
+    const labelList = resultEnity['label'].split(',');
+    $label.children().remove();
+    labelList.forEach(label => {
+      $label.append('<li><a href="#" onclick="lightbox.onClickLabel(\'' + label + '\');return false;"><span class="label">' + label + '</span></a></li>');
+    });
+    $date.text(resultEnity['date']);
 
     // Disable keyboard nav during transitions
     this.disableKeyboardNav();
@@ -397,6 +398,12 @@
     preloader.src = this.album[imageNumber].link;
     this.currentImageIndex = imageNumber;
   };
+
+  Lightbox.prototype.onClickLabel = async function (label) {
+    const entities = await window.fetchGetEntityByLabel(label);
+    window.updateContents(entities);
+    this.end();
+  }
 
   // Stretch overlay to fit the viewport
   Lightbox.prototype.sizeOverlay = function() {
