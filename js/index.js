@@ -8,9 +8,11 @@ function initMuuri() {
     });
 }
 
+// webページの初期表示は画像を非表示にしておく
 initMuuri();
 hideImgNoAnim();
 
+// imagesLoadedですべての画像の読み込みを確認したら画像を表示する
 $('.garbage').imagesLoaded().always(function (instance) {
     showImg();
 })
@@ -22,27 +24,43 @@ function initMuuri() {
     grid = new Muuri('.grid');
 }
 
+// 画像をすべて非表示(アニメーションなし)
 function hideImgNoAnim() {
     grid.hide(grid.getItems(), {instant: true});
     console.log("hideImg()");
 }
 
+// 画像をすべて非表示(アニメーションあり)
 function hideImg() {
     grid.hide(grid.getItems());
     console.log("hideImg()");
 }
 
+// 画像をすべて表示
 function showImg() {
     grid.show(grid.getItems());
     console.log("showImg()");
 }
 
+// 画面スクロールでタイトルを移動
 $(window).scroll(function() {
     $(".top").toggleClass("moving", window.scrollY > 100);
 });
 
+// ソートボタンをどれか一つしか選択できないよう制御
+$(function () {
+    $('.sortBtn').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('.sortBtn').prop('checked', false);
+            $(this).prop('checked', true);
+        }
+    })
+})
+
+// 表示画像を更新する
 async function updateContents(entities) {
     hideImg();
+    //非表示アニメーション用に1秒待機
     await wait(1);
     $('#grid-contents').children().remove();
     entities.forEach(entity => {

@@ -48,11 +48,22 @@ $result = $datastore->runQuery($query);
     </header>
 
     <div class="body">
-        <div class="sort">
-            <p></p>
-            <span class="sortItem">category</span>
-            <span class="sortItem">locate</span>
-            <span class="sortItem">date</span>
+        <div class="sidebar">
+            <div class="sort">
+                <p></p>
+                <div class="container_icon">
+                    <input class="sortBtn" id="sortBtnLabel" type="checkbox">
+                    <label class="sortItem" for="sortBtnLabel"><img class="icon" src="../contents/icon/label.png" width="30px" height="30px"></label>
+                </div>
+                <div class="container_icon">
+                    <input class="sortBtn" id="sortBtnLocate" type="checkbox">
+                    <label class="sortItem" for="sortBtnLocate"><img class="icon" src="../contents/icon/pin.png" width="30px" height="30px"></label>
+                </div>
+                <div class="container_icon">
+                    <input class="sortBtn" id="sortBtnDate" type="checkbox">
+                    <label class="sortItem" for="sortBtnDate"><img class="icon" src="../contents/icon/calender.png" width="30px" height="30px"></label>
+                </div>
+            </div>
         </div>
         <div class="grid" id="grid-contents">
 
@@ -72,8 +83,7 @@ $result = $datastore->runQuery($query);
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.9.5/muuri.js" integrity="sha512-hFmxG/5TvZb0azjulqGPzLEP0LppyA1IyaidJBaDCwEvbBSQlTaUiQ453Tb2Af/3RGfV5A14raSxmIx3Oxz8mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-    <script src="../js/lightbox.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
     <script src="../js/index.js"></script>
     <script src="../js/cloudstoreAPIFetcher.js"></script>
     <script src="../js/lightbox.js"></script>

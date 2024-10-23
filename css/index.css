@@ -37,22 +37,76 @@ header {
     width: 100vw;
     text-align: center;
     font-family: 'Disclaimer';
-    font-size: 120px;
+    font-size: 170px;
     letter-spacing: 0.07em;
     transition: 0.5s;
 }
 
 
-.sort{
+.sidebar {
+    display: flex;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.sort {
+    display: flex;
+    margin: 0 auto;
+}
+
+.container_icon {
+    width: 4em;
+    height: 4em;
     text-align: center;
-    padding-top: 0px;
-    
+    margin: 0 20px;
+}
+
+.container_icon input {
+    display: none;
 }
 
 .sortItem{
-    margin: 0px 10px;
-    font-family: 'Mont';
-    font-size: 18px;
+    /* margin: 0px 10px; */
+    /* font-family: 'Mont';
+    font-size: 18px; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #090909;
+    background-color: transparent;
+    background-image: linear-gradient(145deg, #111111, #313133);
+    box-sizing: border-box;
+    box-shadow: inset 2px 2px 0 #79787a, inset -2px -2px 0px #1c1c1c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sortItem::before{
+    position: absolute;
+    content: "";
+    width: 4.25em;
+    height: 4.25em;
+    border-radius: inherit;
+    background-color: transparent;
+    background-image: linear-gradient(145deg, #222020, #5a5454);
+    z-index: -1;
+    box-shadow: 5px 5px 8px #000000, -5px -5px 8px #3d3d3d; 
+}
+
+.container_icon input:checked + .sortItem .icon {
+    filter: brightness(0) saturate(100%) invert(38%) sepia(15%) saturate(4132%) hue-rotate(190deg) brightness(90%) contrast(87%);
+}
+
+.container_icon input:checked + .sortItem {
+    box-shadow: inset -2px -2px 0 #5e5e5e,inset 2px 2px 0 #1c1c1c;
+    border: 2px solid rgba(61, 64, 255, 0.281);
+    animation: animeBorder .5s linear alternate-reverse infinite;
+}
+
+.icon {
+    filter: brightness(0) saturate(100%) invert(31%) sepia(4%) saturate(17%) hue-rotate(317deg) brightness(90%) contrast(88%);
 }
 
 body{
@@ -72,6 +126,8 @@ body{
 
 .grid{
     position: relative;
+    margin: 80px;
+    box-sizing: border-box;
 }
 
 .item{
@@ -87,4 +143,10 @@ body{
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+@keyframes animeBorder {
+  to {
+    border-color: rgba(77, 124, 255, 0.137);
+  }
 }

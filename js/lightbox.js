@@ -432,11 +432,18 @@
     var oldHeight = this.$outerContainer.outerHeight();
     var newWidth  = imageWidth + this.containerPadding.left + this.containerPadding.right + this.imageBorderWidth.left + this.imageBorderWidth.right;
     var newHeight = imageHeight + this.containerPadding.top + this.containerPadding.bottom + this.imageBorderWidth.top + this.imageBorderWidth.bottom;
+    //追加--------------------------------------------
+    self.$lightbox.find('.lb-dataContainer').width(newWidth); //443
+    self.$lightbox.find('.lb-prevLink').height(newHeight);    //444
+    self.$lightbox.find('.lb-nextLink').height(newHeight);    //445
+    this.updateNav();
+    this.updateDetails();
+    //ここまで-----------------------------------------
 
     function postResize() {
-      self.$lightbox.find('.lb-dataContainer').width(newWidth);
-      self.$lightbox.find('.lb-prevLink').height(newHeight);
-      self.$lightbox.find('.lb-nextLink').height(newHeight);
+      // self.$lightbox.find('.lb-dataContainer').width(newWidth);
+      // self.$lightbox.find('.lb-prevLink').height(newHeight);
+      // self.$lightbox.find('.lb-nextLink').height(newHeight);
 
       // Set focus on one of the two root nodes so keyboard events are captured.
       self.$overlay.trigger('focus');
@@ -445,10 +452,11 @@
     }
 
     if (oldWidth !== newWidth || oldHeight !== newHeight) {
-      this.$outerContainer.animate({
-        width: newWidth,
-        height: newHeight
-      }, this.options.resizeDuration, 'swing', function() {
+      this.$outerContainer.animate(
+        {
+          width: newWidth,
+          height: newHeight
+        }, this.options.resizeDuration, 'swing', function () {
         postResize();
       });
     } else {
@@ -461,8 +469,8 @@
     this.$lightbox.find('.lb-loader').stop(true).hide();
     this.$lightbox.find('.lb-image').fadeIn(this.options.imageFadeDuration);
 
-    this.updateNav();
-    this.updateDetails();
+    // this.updateNav();
+    // this.updateDetails();
     this.preloadNeighboringImages();
     this.enableKeyboardNav();
   };

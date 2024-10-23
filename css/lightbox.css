@@ -52,6 +52,7 @@ body.lb-disable-scrolling {
   height: 250px;
   margin: 0 auto;
   border-radius: 4px;
+  right: 0;
 
   /* Background color behind image.
      This is visible during transitions. */
@@ -65,7 +66,7 @@ body.lb-disable-scrolling {
 }
 
 .lb-loader {
-  position: absolute;
+  position: relative;
   top: 43%;
   left: 0;
   height: 25%;
@@ -193,9 +194,9 @@ body.lb-disable-scrolling {
   height: 30px;
   line-height: 30px;
   padding: 0 1em;
-  background-color: #2196F3;
+  background-color: #414242;
   border-radius: 0 3px 3px 0;
-  color: #fff;
+  color: #ffffff;
   font-size: 13px;
   text-decoration: none;
   -webkit-transition: .2s;
@@ -209,7 +210,7 @@ body.lb-disable-scrolling {
   content: '';
   width: 0;
   height: 0;
-  border-color: transparent #2196F3 transparent transparent;
+  border-color: transparent #414242 transparent transparent;
   border-style: solid;
   border-width: 15px 15px 15px 0;
   -webkit-transition: .2s;
@@ -226,16 +227,16 @@ body.lb-disable-scrolling {
   width: 6px;
   height: 6px;
   margin-top: -3px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 100%;
 }
 
 .lb-details li a:hover {
-  background-color: #555;
+  background-color: #377af7;
   color: #fff;
 }
 .lb-details li a:hover::before {
-  border-right-color: #555;
+  border-right-color: #377af7;
 }
 
 /* ラベル用ここまで */
@@ -258,10 +259,10 @@ body.lb-disable-scrolling {
 }
 
 .lb-details {
-    width: 30%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .lb-data .lb-number {
