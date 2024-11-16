@@ -6,9 +6,8 @@
     return resultEnity = await JSON.parse(JSON.stringify(json))[0][0];
 }
 
-async function fetchGetEntityByLabels(labels) {
-    console.log(labels);
-    const fetchResult = await fetch('http://localhost:3000/getEntityByLabel?label=' + labels)
+async function fetchGetEntityByLabel(label) {
+    const fetchResult = await fetch('http://localhost:3000/getEntityByLabel?label=' + label)
     const json = await fetchResult.json();
     console.log("fetch result json: " + json);
     //stringで取得した結果をjsonへ変換
@@ -16,4 +15,4 @@ async function fetchGetEntityByLabels(labels) {
 }
 
 window.fetchGetEntityByName = fetchGetEntityByName;
-window.fetchGetEntityByLabels = fetchGetEntityByLabels;
+window.fetchGetEntityByLabel = fetchGetEntityByLabel;

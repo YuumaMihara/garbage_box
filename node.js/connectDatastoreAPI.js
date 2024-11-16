@@ -39,12 +39,11 @@ async function getAllEntities() {
 
 // ラベルが一致するエンティティを取得する関数
 // param: 検索条件のラベル名
-async function getEntityByLabel(labels) {
+async function getEntityByLabel(labelName) {
   const entities = await getAllEntities();
-  const labelList = labels.split(',');
   // cloudstoreのクエリに部分一致がないため、js内のfilterを使用
   return entities.filter(entity =>
-    entity["label"] && entity["label"].includes(labelList)
+    entity["label"] && entity["label"].includes(labelName)
   );
 }
 
