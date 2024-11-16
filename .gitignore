@@ -1,1 +1,4 @@
 /key/
+/vendor/
+/node_modules/
+/vendor/composer
