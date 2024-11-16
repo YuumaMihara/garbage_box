@@ -51,20 +51,34 @@ $result = $datastore->runQuery($query);
         <div class="sidebar">
             <div class="sort">
                 <p></p>
-                <div class="container_icon">
-                    <input class="sortBtn" id="sortBtnLabel" type="checkbox">
-                    <label class="sortItem" for="sortBtnLabel"><img class="icon" src="../contents/icon/label.png" width="30px" height="30px"></label>
+                <div class="container_searchbar">
+                    <div class="container_icon">
+                        <input class="sortBtn" id="sortBtnLabel" type="checkbox">
+                        <label class="sortItem" for="sortBtnLabel"><img class="icon" src="../contents/icon/label.png" width="30px" height="30px"></label>
+                    </div>
+                    <input placeholder="label name" id="input_label" class="input_box" type="text">
                 </div>
-                <div class="container_icon">
-                    <input class="sortBtn" id="sortBtnLocate" type="checkbox">
-                    <label class="sortItem" for="sortBtnLocate"><img class="icon" src="../contents/icon/pin.png" width="30px" height="30px"></label>
+
+                <div class="container_searchbar">
+                    <div class="container_icon">
+                        <input class="sortBtn" id="sortBtnLocate" type="checkbox">
+                        <label class="sortItem" for="sortBtnLocate"><img class="icon" src="../contents/icon/pin.png" width="30px" height="30px"></label>
+                    </div>
+                    <input placeholder="location name" id="input_location" class="input_box" type="text">
                 </div>
-                <div class="container_icon">
-                    <input class="sortBtn" id="sortBtnDate" type="checkbox">
-                    <label class="sortItem" for="sortBtnDate"><img class="icon" src="../contents/icon/calender.png" width="30px" height="30px"></label>
+
+                <div class="container_searchbar">
+                    <div class="container_icon">
+                        <input class="sortBtn" id="sortBtnDate" type="checkbox">
+                        <label class="sortItem" for="sortBtnDate"><img class="icon" src="../contents/icon/calender.png" width="30px" height="30px"></label>
+                    </div>
+                    <input placeholder="selectDate" id="input_date" class="input_box" type="text">
                 </div>
             </div>
         </div>
+
+        <div class="output_label"></div>
+
         <div class="grid" id="grid-contents">
 
             <?php

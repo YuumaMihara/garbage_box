@@ -399,8 +399,8 @@
     this.currentImageIndex = imageNumber;
   };
 
-  Lightbox.prototype.onClickLabel = async function (label) {
-    const entities = await window.fetchGetEntityByLabel(label);
+  Lightbox.prototype.onClickLabel = async function (labels) {
+    const entities = await window.fetchGetEntityByLabels(labels);
     window.updateContents(entities);
     this.end();
   }
