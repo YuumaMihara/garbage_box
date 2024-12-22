@@ -8,6 +8,9 @@
     src: url(../fonts/Montserrat-Thin.ttf);
 }
 
+:root {
+    --gmpx-color-surface: #ff0505;
+}
 
 header {
     padding-bottom: 15px;

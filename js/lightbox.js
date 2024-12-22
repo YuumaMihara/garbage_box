@@ -288,17 +288,18 @@
     var $pinIcon = this.$lightbox.find('.coordinate_href');
     const objectName = filename.replace("https://storage.googleapis.com/garbagebox/image/", "");
     const resultEnity = await window.fetchGetEntityByName(objectName);
+    console.log(resultEnity[0][0]["label"])
 
-    $location.text(resultEnity['location']);
-    $pinIcon[0].setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + resultEnity['detail_location']);
-    $detailLocation[0].setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + resultEnity['detail_location']);
-    $detailLocation.text(resultEnity['detail_location']);
-    const labelList = resultEnity['label'].split(',');
+    $location.text(resultEnity[0][0]['location']);
+    $pinIcon[0].setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + resultEnity[0][0]['detail_location']);
+    $detailLocation[0].setAttribute('href', 'https://www.google.com/maps/search/?api=1&query=' + resultEnity[0][0]['detail_location']);
+    $detailLocation.text(resultEnity[0][0]['detail_location']);
+    const labelList = resultEnity[0][0]['label'].split(',');
     $label.children().remove();
     labelList.forEach(label => {
       $label.append('<li><a href="#" onclick="lightbox.onClickLabel(\'' + label + '\');return false;"><span class="label">' + label + '</span></a></li>');
     });
-    $date.text(resultEnity['date']);
+    $date.text(resultEnity[0][0]['date']);
 
     // Disable keyboard nav during transitions
     this.disableKeyboardNav();
@@ -399,9 +400,9 @@
     this.currentImageIndex = imageNumber;
   };
 
-  Lightbox.prototype.onClickLabel = async function (labels) {
-    const entities = await window.fetchGetEntityByLabels(labels);
-    window.updateContents(entities);
+  // ラベル押下時、lbを閉じてラベル検索を行う
+  Lightbox.prototype.onClickLabel = async function (label) {
+    window.addSearchLabel(label);
     this.end();
   }
 

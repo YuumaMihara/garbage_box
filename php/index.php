@@ -30,17 +30,11 @@ $result = $datastore->runQuery($query);
     <link rel="stylesheet" href="../css/index.css">
     <link href="../css/lightbox.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="../js/lightbox.js"></script>
+    <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6"></script>
     <title>GARBAGE BOX</title>
 </head>
 
 <body>
-    <script>
-        lightbox.option({
-            'disableScrolling': true,
-            'showImageNumberLabel': false
-        })
-    </script>
     <header>
         <div class="top">
             <span>GARBAGE BOX</span>

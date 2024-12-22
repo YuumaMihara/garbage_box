@@ -1,19 +1,29 @@
 ﻿async function fetchGetEntityByName(name) {
-    const fetchResult = await fetch('http://localhost:3000/getEntity?name=' + name)
-    const json = await fetchResult.json();
-    console.log("fetch result json: " + json);
-    //stringで取得した結果をjsonへ変換
-    return resultEnity = await JSON.parse(JSON.stringify(json))[0][0];
+    return await fetcher('http://localhost:3000/getEntity?name=' + name)
 }
 
+/**
+ * node.jsへラベルを引数にGETメソッドでリクエストを送信
+ * @param {string} labels 検索をかけるラベル群 
+ * @returns レスポンスで帰ってきた検索ラベルと一致するentityを返す
+ */
 async function fetchGetEntityByLabels(labels) {
-    console.log(labels);
-    const fetchResult = await fetch('http://localhost:3000/getEntityByLabel?label=' + labels)
-    const json = await fetchResult.json();
-    console.log("fetch result json: " + json);
-    //stringで取得した結果をjsonへ変換
-    return resultEnity = await JSON.parse(JSON.stringify(json));
+    return await fetcher('http://localhost:3000/getEntityByLabel?label=' + labels)
+    
 }
 
-window.fetchGetEntityByName = fetchGetEntityByName;
-window.fetchGetEntityByLabels = fetchGetEntityByLabels;
+async function fetchGetEntityByLocation(location) {
+    return await fetcher('http://localhost:3000/getEntityByLocation?location=' + location)
+}
+
+async function fetcher(URL) {
+    const fetchResult = await fetch(URL)
+    const json = await fetchResult.json()
+    console.log("fetch result json: " + json)
+    //stringで取得した結果をjsonへ変換
+    return resultEnity = await JSON.parse(JSON.stringify(json))
+}
+
+window.fetchGetEntityByName = fetchGetEntityByName
+window.fetchGetEntityByLabels = fetchGetEntityByLabels
+window.fetchGetEntityByLocation = fetchGetEntityByLocation
