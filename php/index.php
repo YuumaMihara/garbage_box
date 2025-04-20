@@ -66,7 +66,19 @@ $result = $datastore->runQuery($query);
                         <input class="sortBtn" id="sortBtnDate" type="checkbox">
                         <label class="sortItem" for="sortBtnDate"><img class="icon" src="../contents/icon/calender.png" width="30px" height="30px"></label>
                     </div>
-                    <input placeholder="selectDate" id="input_date" class="input_box" type="text">
+                    <select id="input_date" class="input_box">
+                        <option></option>
+                        <option>unknown</option>
+                        <?php
+                        $options = ["", "unknown"];
+                        foreach ($result as $index => $entity) {
+                            $date = mb_substr($entity["date"], 0, 7);
+                            if (!in_array($date, $options)) {
+                                echo "<option>" . $date . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
                 </div>
             </div>
         </div>

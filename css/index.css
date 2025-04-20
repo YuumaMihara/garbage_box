@@ -154,6 +154,10 @@ header {
     opacity: 1;
 }
 
+option {
+    background-color: #000000;
+}
+
 body {
     background-color: #111212;
     color: #f0f8ff;

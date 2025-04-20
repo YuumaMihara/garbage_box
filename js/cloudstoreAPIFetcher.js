@@ -1,5 +1,9 @@
-﻿async function fetchGetEntityByName(name) {
-    return await fetcher('http://localhost:3000/getEntity?name=' + name)
+﻿async function fetchGetAllEntities() {
+    return await fetcher('http://localhost:3000/getAllEntities')
+}
+
+async function fetchGetEntityByName(name) {
+    return await fetcher('http://localhost:3000/getEntityByName?name=' + name)
 }
 
 /**
@@ -9,11 +13,24 @@
  */
 async function fetchGetEntityByLabels(labels) {
     return await fetcher('http://localhost:3000/getEntityByLabel?label=' + labels)
-    
 }
 
+/**
+ * node.jsへロケーションを引数にGETメソッドでリクエストを送信
+ * @param {string} location 
+ * @returns 
+ */
 async function fetchGetEntityByLocation(location) {
     return await fetcher('http://localhost:3000/getEntityByLocation?location=' + location)
+}
+
+/**
+ * node.jsへ日付(yyyyMM)を引数にGETメソッドでリクエストを送信
+ * @param {string} date 
+ * @returns 
+ */
+async function fetchGetEntityByDate(date) {
+    return await fetcher('http://localhost:3000/getEntityByDate?date=' + date)
 }
 
 async function fetcher(URL) {
@@ -24,6 +41,8 @@ async function fetcher(URL) {
     return resultEnity = await JSON.parse(JSON.stringify(json))
 }
 
+window.fetchGetAllEntities = fetchGetAllEntities
 window.fetchGetEntityByName = fetchGetEntityByName
 window.fetchGetEntityByLabels = fetchGetEntityByLabels
 window.fetchGetEntityByLocation = fetchGetEntityByLocation
+window.fetchGetEntityByDate = fetchGetEntityByDate

@@ -5,6 +5,15 @@ const url = require('url')
 // datastore接続用
 const datastore = require('./connectDatastoreAPI')
 
+async function getAllEntities(req, res) {
+    try {
+        const entity = await datastore.getAllEntities()
+        setResponse(res, entity)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 async function getEntityByName(req, res) {
     try {
         const param = url.parse(req.url, true).query
@@ -38,6 +47,17 @@ async function getEntityByLocation(req, res) {
     }
 }
 
+async function getEntityByDate(req, res) {
+    try {
+        const param = url.parse(req.url, true).query
+        console.log("param: " + param.date)
+        const entity = await datastore.getEntityByDate(param.date)
+        setResponse(res, entity)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 function notFound(req, res) {
     res.writeHead(404)
     res.end('Not Found')
@@ -51,9 +71,12 @@ function setResponse(res, entity) {
 }
 
 const server = http.createServer((req, res) => {
-    const urlLength = req.url.indexOf('?')
+    const urlLength = req.url.indexOf('?') != -1 ? req.url.indexOf('?') : req.url.length
     switch (req.url.substring(0, urlLength)) {
-        case '/getEntity':
+        case '/getAllEntities':
+            getAllEntities(req, res)
+            break
+        case '/getEntityByName':
             getEntityByName(req, res)
             break
         case '/getEntityByLabel':
@@ -61,6 +84,9 @@ const server = http.createServer((req, res) => {
             break
         case '/getEntityByLocation':
             getEntityByLocation(req, res)
+            break
+        case '/getEntityByDate':
+            getEntityByDate(req, res)
             break
         default:
             notFound(req, res)

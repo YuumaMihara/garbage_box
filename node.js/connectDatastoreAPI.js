@@ -31,7 +31,7 @@ async function getEntity(name) {
 
 /**
  *  すべてのエンティティを取得する関数
- * */ 
+ * */
 async function getAllEntities() {
   const query = datastore.createQuery('Contents')
   try {
@@ -76,7 +76,8 @@ async function getEntityByLocation(location) {
  * @param {string} date 検索条件の日付
  */
 async function getEntityByDate(date) {
-
+  const entities = await getAllEntities()
+  return entities.filter(entity => entity["date"].substring(0, 7).includes(date))
 }
 
 function toHalfWidth(targetStr) {
@@ -86,6 +87,8 @@ function toHalfWidth(targetStr) {
   return str
 }
 
+exports.getAllEntities = getAllEntities
 exports.getEntity = getEntity
 exports.getEntityByLabel = getEntityByLabel
 exports.getEntityByLocation = getEntityByLocation
+exports.getEntityByDate = getEntityByDate

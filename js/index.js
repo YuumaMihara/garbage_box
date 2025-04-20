@@ -91,6 +91,31 @@ async function searchBarCloseAnim(searchBar) {
     searchBar.find('.input_box').removeClass('open')
     await wait(0.4)
     searchBar.find('.input_box').css('display', 'none')
+    resetCondition();
+}
+
+/**
+ * すべての検索条件を削除する
+ */
+async function resetCondition() {
+    var isNeedReset = Boolean(false);
+    if ($(".output_label").children().length != 0) {
+        $(".output_label").children().remove()
+        $("#input_label").val('')
+        isNeedReset = true
+    }
+    if ($("#input_location").val().trim()) {
+        $("#input_location").val('')
+        isNeedReset = true
+    }
+    if ($("#input_date").val() || $("#input_date").val() != "default") {
+        $("#input_date").val('');
+        isNeedReset = true;
+    }
+    if (isNeedReset) {
+        const entities = await window.fetchGetAllEntities()
+        updateContents(entities)
+    }
 }
 
 // 検索バーオープンアニメーション
@@ -143,6 +168,11 @@ $("#input_label").on('keyup', async function (event) {
     }
 })
 
+// 検索バーから日付指定
+$("#input_date").on("change", function () {
+    searchAtDate($(this).val())
+})
+
 /**
  * 検索ラベルの削除、表示画像の更新(削除するラベルを複数受け取る)
  * @param {element} targetLabels 
@@ -169,6 +199,21 @@ async function addSearchLabel(label) {
  */
 async function searchAtLocation(location) {
     const entities = await window.fetchGetEntityByLocation(location)
+    updateContents(entities)
+}
+
+/**
+ * 日付で検索、表示画像を更新
+ * @param {string} date 
+ */
+async function searchAtDate(date) {
+    var entities;
+    // 選択された日付が空文字だった場合
+    if (date == "default") {
+        entities = await window.fetchGetAllEntities();
+    } else {
+        entities = await window.fetchGetEntityByDate(date)
+    }
     updateContents(entities)
 }
 
