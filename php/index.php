@@ -39,6 +39,19 @@ $result = $datastore->runQuery($query);
         <div class="top">
             <span>GARBAGE BOX</span>
         </div>
+        <nav class="menu">
+            <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open">
+            <label class="menu-open-button" for="menu-open">
+                <span class="lines line-1"></span>
+                <span class="lines line-2"></span>
+                <span class="lines line-3"></span>
+            </label>
+            <ul class="menu_box">
+                <li><a class="menu_item" href="#">TOP</a></li>
+                <li><a class="menu_item" href="#">CONTENTS</a></li>
+                <li><a class="menu_item" href="#">ABOUT</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="body">
@@ -75,6 +88,7 @@ $result = $datastore->runQuery($query);
                             $date = mb_substr($entity["date"], 0, 7);
                             if (!in_array($date, $options)) {
                                 echo "<option>" . $date . "</option>";
+                                $options[] = $date;
                             }
                         }
                         ?>

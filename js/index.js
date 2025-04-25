@@ -108,7 +108,7 @@ async function resetCondition() {
         $("#input_location").val('')
         isNeedReset = true
     }
-    if ($("#input_date").val() || $("#input_date").val() != "default") {
+    if ($("#input_date").val()) {
         $("#input_date").val('');
         isNeedReset = true;
     }

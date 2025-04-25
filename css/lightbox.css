@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Roboto';
-    src: url(../fonts/Roboto-Thin.ttf);
+  font-family: 'Roboto';
+  src: url(../fonts/Roboto-Thin.ttf);
 }
 
 body.lb-disable-scrolling {
@@ -92,7 +92,7 @@ body.lb-disable-scrolling {
   z-index: 10;
 }
 
-.lb-container > .nav {
+.lb-container>.nav {
   left: 0;
 }
 
@@ -163,7 +163,7 @@ body.lb-disable-scrolling {
   color: #ccc;
 }
 
-.lb-data{
+.lb-data {
   width: 85%;
   float: left;
   text-align: left;
@@ -235,6 +235,7 @@ body.lb-disable-scrolling {
   background-color: #377af7;
   color: #fff;
 }
+
 .lb-details li a:hover::before {
   border-right-color: #377af7;
 }
@@ -246,7 +247,7 @@ body.lb-disable-scrolling {
   font-family: 'Roboto';
 }
 
-.lb-details a:hover,a:visited {
+.lb-details a:hover, a:visited {
   color: inherit;
 }
 
@@ -293,4 +294,34 @@ body.lb-disable-scrolling {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
+}
+
+/* スマホ用レスポンシブ対応 */
+@media screen and (max-width: 480px) {
+  body.lb-disable-scrolling {
+    overflow: hidden;
+  }
+
+  /* 部分的にはスクロール可能になっているが、lightboxの表示範囲が画面全体になっていない */
+  .lightbox {
+    overflow: auto;
+    display: flex;
+    flex-flow: column;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 95vh;
+    z-index: 10000;
+    text-align: center;
+    line-height: 0;
+    font-weight: normal;
+    outline: none;
+  }
+
+  .lb-details {
+    width: 90vw;
+    position: relative;
+    top: 0%;
+    transform: translateY(0%);
+  }
 }
