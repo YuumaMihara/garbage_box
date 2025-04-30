@@ -47,9 +47,9 @@ $result = $datastore->runQuery($query);
                 <span class="lines line-3"></span>
             </label>
             <ul class="menu_box">
-                <li><a class="menu_item" href="#">TOP</a></li>
-                <li><a class="menu_item" href="#">CONTENTS</a></li>
-                <li><a class="menu_item" href="#">ABOUT</a></li>
+                <li><a class="menu_item" href="index.php">TOP</a></li>
+                <li><a class="menu_item" href="contents.php">CONTENTS</a></li>
+                <li><a class="menu_item" href="about.php">ABOUT</a></li>
             </ul>
         </nav>
     </header>
