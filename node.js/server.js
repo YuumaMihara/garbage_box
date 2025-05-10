@@ -64,7 +64,6 @@ function notFound(req, res) {
 }
 
 function setResponse(res, entity) {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost")
     res.writeHead(200, { 'Content-Type': 'application/json' })
     res.write(JSON.stringify(entity))
     res.end()

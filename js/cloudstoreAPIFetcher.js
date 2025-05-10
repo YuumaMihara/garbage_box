@@ -1,9 +1,9 @@
 ﻿async function fetchGetAllEntities() {
-    return await fetcher('http://localhost:3000/getAllEntities')
+    return await fetcher('/api/getAllEntities')
 }
 
 async function fetchGetEntityByName(name) {
-    return await fetcher('http://localhost:3000/getEntityByName?name=' + name)
+    return await fetcher('/api/getEntityByName?name=' + name)
 }
 
 /**
@@ -12,7 +12,7 @@ async function fetchGetEntityByName(name) {
  * @returns レスポンスで帰ってきた検索ラベルと一致するentityを返す
  */
 async function fetchGetEntityByLabels(labels) {
-    return await fetcher('http://localhost:3000/getEntityByLabel?label=' + labels)
+    return await fetcher('/api/getEntityByLabel?label=' + labels)
 }
 
 /**
@@ -21,7 +21,7 @@ async function fetchGetEntityByLabels(labels) {
  * @returns 
  */
 async function fetchGetEntityByLocation(location) {
-    return await fetcher('http://localhost:3000/getEntityByLocation?location=' + location)
+    return await fetcher('/api/getEntityByLocation?location=' + location)
 }
 
 /**
@@ -30,7 +30,7 @@ async function fetchGetEntityByLocation(location) {
  * @returns 
  */
 async function fetchGetEntityByDate(date) {
-    return await fetcher('http://localhost:3000/getEntityByDate?date=' + date)
+    return await fetcher('/api/getEntityByDate?date=' + date)
 }
 
 async function fetcher(URL) {
