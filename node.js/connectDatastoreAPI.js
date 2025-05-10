@@ -4,7 +4,7 @@ const { Datastore, PropertyFilter } = require('@google-cloud/datastore')
 // Datastore クライアントを作成
 const datastore = new Datastore({
   projectId: 'web-photo-gallery-429509',
-  keyFilename: '../key/cloud_strage_api_key.json'
+  keyFilename: '/var/www/garbage_box/key/cloud_strage_api_key.json'
 })
 
 /**
