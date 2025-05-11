@@ -15,11 +15,15 @@ hideImgNoAnim()
 
 // imagesLoadedですべての画像の読み込みを確認したら画像を表示する
 $('.garbage').imagesLoaded().always(function (instance) {
-    showImg()
+    $('.wrapper').removeClass('loading')
+    wait(0.5).then(() => {
+        // 画像をすべて表示
+        showImg()
+    })
 })
     .progress(function (instance, image) {
-        //TODO:ロード画面を追加
-    })
+    $('.wrapper').addClass('loading')
+})
 
 // 画像をすべて非表示(アニメーションなし)
 function hideImgNoAnim() {
@@ -140,7 +144,11 @@ async function updateContents(entities) {
     hideImgNoAnim()
     $('.garbage').imagesLoaded().always(async function (instance) {
         showImg()
+        $('.wrapper').hide()
     })
+    .progress(function (instance, image) {
+        $('.wrapper').show()
+        })
 }
 
 // 検索バーから場所検索

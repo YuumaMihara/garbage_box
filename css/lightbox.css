@@ -309,8 +309,8 @@ body.lb-disable-scrolling {
     flex-flow: column;
     position: absolute;
     left: 0;
-    width: 100%;
-    height: 95vh;
+    width: 100vw;
+    height: 90vh;
     z-index: 10000;
     text-align: center;
     line-height: 0;
@@ -319,7 +319,7 @@ body.lb-disable-scrolling {
   }
 
   .lb-details {
-    width: 90vw;
+    width: 88vw;
     position: relative;
     top: 0%;
     transform: translateY(0%);
