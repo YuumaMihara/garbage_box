@@ -48,8 +48,8 @@ $result = $datastore->runQuery($query);
             </label>
             <ul class="menu_box">
                 <li><a class="menu_item" href="/">TOP</a></li>
-                <li><a class="menu_item" href="php/contents.php">CONTENTS</a></li>
-                <li><a class="menu_item" href="php/about.php">ABOUT</a></li>
+                <li><a class="menu_item" href="/php/contents.php">CONTENTS</a></li>
+                <li><a class="menu_item" href="/php/about.php">ABOUT</a></li>
             </ul>
         </nav>
     </header>
